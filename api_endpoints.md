@@ -125,6 +125,11 @@ Response:
 
 GET /api/products/
 
+- All products: /api/products/
+- Filter by category: /api/products?category=<category_id>/
+- Pagination: /api/products?&page=<page_number>
+- Pagination with custom number of records in page: /api/products?count=<count_of_records>&page=<page_number>
+
 Response:
 
 ```
