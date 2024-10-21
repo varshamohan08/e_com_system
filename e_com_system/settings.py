@@ -144,8 +144,8 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
-ENCRYPTION_KEY= 'L9tIZLaGGqMLB3ISYDSFwiImDn5qQGUexNr5NJCORuQ='
-# generate fernet using below code
+ENCRYPTION_KEY= "vmFaf4y1Rq0OC6xbfyVnXq587RKaqIohmg1Cg6Uz_OU="
+# generate fernet key using below code
 # from cryptography.fernet import Fernet
 # key = Fernet.generate_key()
 # print(key.decode())

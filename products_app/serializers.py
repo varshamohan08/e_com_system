@@ -5,17 +5,20 @@ from .models import Category, Product
 from django.conf import settings
 
 from cryptography.fernet import Fernet
+import base64
 
-fernet = Fernet(settings.ENCRYPTION_KEY)
+fernet = Fernet(settings.ENCRYPTION_KEY.encode())
 
-def encrypt_price(price) -> bytes:
-    return fernet.encrypt(str(price).encode())
+def encrypt_price(price) -> str:
+    encrypted = fernet.encrypt(str(price).encode())
+    return base64.b64encode(encrypted).decode()
 
-def decrypt_price(encrypted_price: bytes) -> str:
+def decrypt_price(encrypted_price: str) -> float:
     try:
-        decrypted_value = fernet.decrypt(encrypted_price).decode()
+        encrypted_bytes = base64.b64decode(encrypted_price)
+        decrypted_value = fernet.decrypt(encrypted_bytes).decode()
         return float(decrypted_value)
-    except Exception as e:
+    except Exception:
         raise ValueError("Invalid encrypted price or key.")
 
 class CategorySerializer(serializers.ModelSerializer):
